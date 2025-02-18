@@ -1,6 +1,6 @@
 package com.example.desafio.angel.pokedex.controller;
 
-
+import com.example.desafio.angel.pokedex.exception.PokemonNotFoundException;
 import com.example.desafio.angel.pokedex.service.PokeApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,8 @@ public class PokemonController {
 
     @GetMapping("/{name}")
     public ResponseEntity<Mono<Map>> getPokemonDetail(@PathVariable String name) {
-        Mono<Map> response = pokeApiService.getPokemonDetail(name);
+        Mono<Map> response = pokeApiService.getPokemonDetail(name)
+                .switchIfEmpty(Mono.error(new PokemonNotFoundException(name)));
         return ResponseEntity.ok(response);
     }
 }
