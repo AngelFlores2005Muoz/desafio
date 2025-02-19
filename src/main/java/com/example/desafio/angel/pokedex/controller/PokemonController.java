@@ -25,7 +25,6 @@ public class PokemonController {
     public ResponseEntity<Mono<Map>> listPokemons(
             @RequestParam(defaultValue = "20") int limit,
             @RequestParam(defaultValue = "0") int offset) {
-        System.out.println("hola entrando");
         Mono<Map> response = pokeApiService.getPokemons(limit, offset);
         return ResponseEntity.ok(response);
     }
