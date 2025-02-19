@@ -1,4 +1,4 @@
-package com.example.desafio.angel.pokedex;
+package com.example.desafio.angel.pokedex.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
